@@ -26,19 +26,32 @@
                 "isHidden": true
             }
         },
+        "actionEventListener2": {
+            "prototype": "montage/core/event/action-event-listener",
+            "properties": {
+                "action": "deleteContent",
+                "handler": {"@": "rangeController"}
+            },
+            "_dev": {
+                "isHidden": true
+            }
+        },
         "badge": {
             "prototype": "digit/ui/badge.reel",
             "properties": {
-                "element": {"#": "badge"}
+                "element": {"#": "badge"},
+                "contenteditable": "true",
+                "dir": "ltr",
+                "draggable": "true"
             },
             "bindings": {
                 "value": {"<-": "@rangeController.organizedContent.filter{!completed}.length"}
             }
         },
-        "button": {
+        "button-add": {
             "prototype": "digit/ui/button.reel",
             "properties": {
-                "element": {"#": "button"},
+                "element": {"#": "button-add"},
                 "contenteditable": "true",
                 "dir": "ltr",
                 "draggable": "true",
@@ -52,16 +65,23 @@
                 }
             ]
         },
-        "button2": {
+        "button-clear": {
             "prototype": "digit/ui/button.reel",
             "properties": {
-                "element": {"#": "button2"},
+                "element": {"#": "button-clear"},
                 "contenteditable": "true",
                 "dir": "ltr",
                 "draggable": "true",
                 "enabled": true,
                 "label": "Clear completed"
-            }
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "useCapture": false,
+                    "listener": {"@": "actionEventListener2"}
+                }
+            ]
         },
         "list": {
             "prototype": "digit/ui/list.reel",
@@ -101,9 +121,9 @@
 <body>
     <div data-montage-id="main" data-montage-skin="light" class="Main">
         <h1 data-montage-id="title"></h1>
-        <button data-montage-id="button"></button>
+        <button data-montage-id="button-add"></button>
         <output data-montage-id="badge"></output>
-        <button data-montage-id="button2"></button>
+        <button data-montage-id="button-clear"></button>
         <ul data-montage-id="list">
             <li data-montage-id="task1"></li>
         </ul>
