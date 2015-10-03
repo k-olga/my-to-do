@@ -1,4 +1,4 @@
 .Task {
 
 }
-.TaskCell-completed {opacity: 0.2;}
+.Task.TaskCell-completed {opacity: 0.2;}
